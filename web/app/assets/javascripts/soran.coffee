@@ -8,6 +8,15 @@ Soran = () ->
   true
 
 Soran.prototype =
+  extend: (d) ->
+    if typeof(d) is 'object'
+      for k, v of d
+        if this.hasOwnProperty k
+          throw k + " already defined in object"
+        else
+          this[k] = v
+    else
+      throw JSON.stringify(d) + ' isnt object'
   playlists: []
   sort:
     referencedAt: (x) ->
